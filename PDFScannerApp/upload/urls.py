@@ -19,6 +19,7 @@ from .views import *
 app_name = "upload"
 
 urlpatterns = [
-    path('', Index.as_view(), name='home'),
-    path('success', Success.as_view(), name='success')
+    path("", Index.as_view(), name="home"),
+    path("success", Success.as_view(), name="success"),
+    path("download", Download.as_view(), name="download"),
 ]
