@@ -71,6 +71,7 @@
             transition: all 1s;
             color: #FFFFFF;
             font-size:100px;
+            cursor:pointer;
         }
 
         input[type='file']{
@@ -86,25 +87,28 @@
         .file-upload:hover{
             background-position: 0 -100%;
             color:#2590EB;
+            cursor:pointer;
         }
     </style>
 </head>
 <body>
-    <div class="messages" style="display:flex; justify-content:center; position:absolute; top:120px; left:50%; transform: translateX(-50%)">
+    <div class="messages" style="display:flex; justify-content:center; position:absolute; top:17%; left:50%; transform: translateX(-50%)">
         {% for message in messages %}
             <div class="alert {{ message.tags }} alert-dismissible" role="alert">
                 {{ message }}
             </div>
         {% endfor %}
-        {% if not messages %}
-            <div class="alert alert-success" role="alert">
-                Upload your scanned PDF to convert to a searchable one
-           </div> 
-        {% endif %}
+        <div id="info-loader" style="display:none">
+        </div>
     </div>
 	<div id="loader" class="loader" style="display:none">
 				
 	</div>
+
+	<div id="info" class="info" style="display:flex; cursor:pointer; position:absolute; top:28%; left:56%" onclick="infoLoader()">
+		<i class="fa fa-info-circle" style="color:white"></i>
+	</div>
+    
     <div id="wrapper" class="wrapper">
       <div class="file-upload">
         <form action="success" method="POST" enctype="multipart/form-data">
@@ -121,7 +125,37 @@
     </footer>
 </body>
 <script>
+    
+    infoLoader();
 
+    function infoLoader(){
+        var ele_root = document.getElementById("info-loader")
+
+        if(ele_root.style.display=="none"){
+            ele_root.style.display = "inline";
+            console.log("Inside")
+            var new_alert_div = document.createElement("div");
+            var text_node = document.createTextNode("Upload your scanned PDF to convert to a searchable PDF!");
+        
+            new_alert_div.className = "alert alert-success";
+            new_alert_div.role = "alert";
+
+            new_alert_div.appendChild(text_node);
+            ele_root.appendChild(new_alert_div);
+            console.log("Inside")
+
+            setTimeout(removeAlert, 5000);
+        }
+    }
+
+    function removeAlert(){ 
+        $(".alert").fadeTo(2000, 0).slideUp(2000, function () { 
+            $(this).parent().css("display","none");
+            $(this).remove();
+        });
+    }
+        
+ 
     window.setTimeout(function () {
         $(".alert").fadeTo(2000, 0).slideUp(2000, function () {
             $(this).remove();
