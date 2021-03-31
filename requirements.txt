@@ -4,7 +4,7 @@ chardet==3.0.4
 Cython==0.29.14
 Django==3.0.2
 img2pdf==0.3.3
-lxml==4.4.2
+lxml==4.6.3
 ocrmypdf==9.4.0
 pdfminer.six==20200104
 pikepdf==1.8.3
