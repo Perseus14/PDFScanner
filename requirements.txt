@@ -7,7 +7,7 @@ img2pdf==0.3.3
 lxml==4.4.2
 ocrmypdf==9.4.0
 pdfminer.six==20200104
-pikepdf==1.8.3
+pikepdf==2.10.0
 Pillow==7.0.0
 pycparser==2.19
 pycryptodome==3.9.4
